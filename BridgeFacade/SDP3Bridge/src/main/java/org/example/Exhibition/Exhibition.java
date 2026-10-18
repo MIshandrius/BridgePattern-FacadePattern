@@ -43,7 +43,6 @@ public abstract class Exhibition {
         this.artwork = Objects.requireNonNull(
                 artwork, "Artwork must not be null"
         );
-        this.priceUsd = priceUsd;
         this.form = Objects.requireNonNull(
                 form, "Format must not be null");
 

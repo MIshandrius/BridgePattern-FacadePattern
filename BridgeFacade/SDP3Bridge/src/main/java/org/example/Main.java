@@ -11,48 +11,21 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
-        IPrice price;
+        GalleryFacade gallery = new GalleryFacade("Starry Night", 100000, "KZT");
 
-        try(Scanner scanner = new Scanner(System.in)) {
-            price = choosePrice(scanner);
-        }
-
-        MuseumFacade museum = new MuseumFacade();
-        museum.showMuseum();
-
-        System.out.println("--------------");
-
-        GalleryFacade gallery = new GalleryFacade(price);
         gallery.showGallery();
 
-    }
+        gallery.presentVirtualGallery();
+        gallery.presentPhysicalGallery();
 
-    private static IPrice choosePrice(Scanner scanner) {
-        while (true) {
-            System.out.println(
-                    "Choose your currency: 1 - USD, 2 - EUR, 3 - KZT"
-            );
 
-            if (!scanner.hasNextLine()) {
-                System.out.println("No input. Using USD.");
-                return new PriceUsd();
-            }
+        MuseumFacade museum = new MuseumFacade("DAVID");
+        museum.showMuseum();
 
-            String choice = scanner.nextLine().trim();
+        museum.presentPhysicalMuseum();
+        museum.presentVirtualMuseum();
 
-            switch (choice) {
-                case "1":
-                    return new PriceUsd();
-                case "2":
-                    return new PriceEur();
-                case "3":
-                    return new PriceKzt();
-                default:
-                    System.out.println(
-                            "Invalid choice. Please enter 1, 2 or 3."
-                    );
-            }
-        }
+
     }
 
 
